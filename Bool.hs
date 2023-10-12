@@ -1,6 +1,6 @@
 module Bool where
 import Prelude
-    hiding (True, False, Bool, (<), (<=), (>), (>=))
+    hiding (True, False, Bool, (<), (<=), (>), (>=), (*), (-))
 import Nat
 
 data Bool = True | False
@@ -29,3 +29,22 @@ O > n = False
 O >= (S n) = False
 m >= O = True
 (S m) >= (S n) = m >= n
+
+ev :: Nat -> Bool
+ev O = True
+ev (S O) = False
+ev (S(S m)) = ev m
+
+od :: Nat -> Bool
+od O = False
+od (S O) = True
+od (S(S m)) = od m
+
+isMul3 :: Nat -> Bool
+isMul3 (S(S(S O))) = True
+isMul3 (S(S(S m))) = isMul3 m
+isMul3 m = False
+
+isZero :: Nat -> Bool
+isZero O = True
+isZero m = False
