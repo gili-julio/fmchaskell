@@ -1,14 +1,17 @@
 module Bool where
-import Prelude
-    hiding (True, False, Bool, (<), (<=), (>), (>=), (*), (-))
-import Nat
 
-data Bool = True | False
-        deriving(Eq, Show)
+import Prelude
+    hiding ((-), last, compare, (<), (<=), (>), (>=), init, isPrefixOf, maximum, minimum, drop, take, enumFromTo, reverse, (++), product, sum, elem, length, (+), (*), (^), quot, min, gcd, lcm, div, max, pred, rem, Bool, True, False)
+
+import Types ( Nat(..), Bool(..) )
 
 ifthen :: Bool -> Nat -> Nat -> Nat
 ifthen True m n = m
 ifthen False m n = n
+
+iff :: Bool -> (Nat, Nat) -> (Nat, Nat) -> (Nat, Nat)
+iff True m n = m
+iff False m n = n
 
 (<) :: Nat -> Nat -> Bool
 O < (S n) = True

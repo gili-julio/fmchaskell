@@ -1,10 +1,8 @@
 module Nat where
-
 import Prelude
-  hiding ((-), last, (<), (>), (>=), (<=), compare, init, isPrefixOf, maximum, minimum, drop, take, enumFromTo, reverse, (++), product, sum, elem, length, (+), (*), (^), quot, min, gcd, lcm, div, max, pred, rem)
-
-data Nat = O | S Nat
-    deriving ( Eq , Show )
+    hiding ((-), last, compare, (<), (<=), (>), (>=), init, isPrefixOf, maximum, minimum, drop, take, enumFromTo, reverse, (++), product, sum, elem, length, (+), (*), (^), quot, min, gcd, lcm, div, max, pred, rem, Bool, True, False)
+import Types
+import Bool (iff, (<))
 
 (+) :: Nat -> Nat -> Nat
 m + O = m
@@ -49,3 +47,18 @@ max :: Nat -> Nat -> Nat
 max O n = n
 max m O = m
 max (S m) (S n) = S(max m n)
+
+div :: (Nat, Nat) -> (Nat, Nat)
+div (a, b) = iff (a < b) (O, a) (let (q', r') = div (a - b, b) in (S q', r'))
+
+left :: (Nat, Nat) -> Nat
+left (a, b) = a
+
+right :: (Nat, Nat) -> Nat
+right (a, b) = b
+
+rem :: (Nat, Nat) -> Nat
+rem (a, b) = right (div (a, b))
+
+quot :: (Nat, Nat) -> Nat
+quot (a, b) = left (div (a, b))
