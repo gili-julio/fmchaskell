@@ -41,7 +41,7 @@ od (S O) = True
 od (S(S m)) = od m
 
 isMul3 :: Nat -> Bool
-isMul3 (S(S(S O))) = True
+isMul3 O = True
 isMul3 (S(S(S m))) = isMul3 m
 isMul3 m = False
 
